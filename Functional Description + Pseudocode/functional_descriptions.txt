@@ -1,0 +1,33 @@
+Pseudocode for C-based Image Parser 
+
+Goals:
+- Send serial image data to FPGA via UART
+- Unpack 4096x4096x3 Image into UART serial stream
+- Handshake with FPGA for functionally correct data delivery 
+- UART Module for Data transfer
+- Receive convolved data from FPGA
+- Re-stitch image into proper dimensions
+
+
+High-Level Function Descriptions: 
+
+//Pre FPGA Modules
+- Load_Image()
+   - Take image file and load it into a proper C array or equivalent data type 
+   - (maybe CV2 based library for C? - ask Dr.P) 
+   
+- Image_PreProc() //in case image preprocessing is needed for data
+    - TODO: Determine wether image needs to be preprocessed prior to serial transmission
+    
+- Kernel_PreProc()
+    - TODO: Kernel needs to be normalized to 8-bit integers for faster FPGA processing
+- Image_to_Serial()
+    - Unpack C-based image into serial stream ready for UART Transmission
+
+//Data Transfer 
+- UART_MASTER() 
+   -TODO: Research C-based UART libraries
+
+//Recieve Data 
+Image_Restitch() 
+   - Recieve data from FPGA UART line and re-pack into C-array

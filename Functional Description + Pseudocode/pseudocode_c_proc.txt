@@ -1,0 +1,58 @@
+Functional Descriptions/Pseudocode: 
+
+load_image(image_path): 
+
+typedef image_dt //Predefined image datatype
+
+  image_dt pre_conv_image = im_load(image_path) // use library for im_load() method
+  
+  
+Image_PreProc(image): 
+  
+  //skeleton module..for now
+  return image; 
+  
+Kernel_PreProc(im_kernel): 
+
+  //Convert 32/64-bit float to 8-bit fixed 
+ 
+ im_kernel_int [Kernel Width][Kernel Length];
+ 
+  for i = 1 to Kernel Width: 
+    
+    for j = 1 to Kernel Length: 
+      
+      im_kernel_int[i][j] = cast_method_to_int(im_kernel[i][j] * 256) //Left shift by 8 for 8-bit integer
+      
+
+
+Im_to_Serial(image): 
+
+  uint8_t uart_stream [4096*4096*3]; 
+  
+  for i in colorspace: 
+  
+    for j in image_width: 
+    
+      for k in image_length: 
+      
+          uart_stream[i*j*k] = image[i][j][k];
+          
+    //Repeat for Kernel
+    
+    
+  UART_MASTER(): 
+ 
+  //TODO
+  
+  Image_Restitch(uart_stream_in): 
+  
+    data_t conv_im[conv_dim_1][conv_dim_2][colorspace];
+    
+    for i in dim1: 
+    
+      for j in dim2: 
+      
+        for k in dim3: 
+        
+          conv_im[i][j][k] = uart_stream_in[i*j*k]; 
