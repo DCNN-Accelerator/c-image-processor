@@ -3,6 +3,8 @@
 #include <termios.h>
 #include <unistd.h>
 
+#define BAUD B9600
+
 int main(int argc, char** argv){
     int fd = open(argv[1], O_RDWR | O_NOCTTY);
     if(fd < 0) printf("\n ERROR in opening serial port");
@@ -10,15 +12,15 @@ int main(int argc, char** argv){
     struct termios SerialPortSettings;
     tcgetattr(fd, &SerialPortSettings);
     
-    cfsetispeed(&SerialPortSettings,argv[2]);
-    cfsetospeed(&SerialPortSettings,argv[2]);
+    cfsetispeed(&SerialPortSettings,BAUD);
+    cfsetospeed(&SerialPortSettings,BAUD);
     
     SerialPortSettings.c_cflag &= ~PARENB;
     SerialPortSettings.c_cflag &= ~CSTOPB;
     SerialPortSettings.c_cflag &= ~CSIZE;
     SerialPortSettings.c_cflag |= CS8;
     SerialPortSettings.c_cflag |= CRTSCTS;
-    SerialPortSettings.c_cflag |= CREAD | CWRITE | CLOCAL;
+    SerialPortSettings.c_cflag |= CREAD | CLOCAL;
     
     SerialPortSettings.c_iflag &= ~(IXON | IXOFF | IXANY);
     SerialPortSettings.c_iflag &= ~(ICANON | ECHO | ECHOE | ISIG);
@@ -29,7 +31,7 @@ int main(int argc, char** argv){
     if((tcsetattr(fd,TCSANOW,&SerialPortSettings)) != 0)
         printf("\n ERROR in Setting attributes");
     else
-        printf("\n Baud = %s StopBits = 1 Parity = none",argv[2]);
+        printf("\n Baud = %d StopBits = 1 Parity = none",BAUD);
     
     tcflush(fd, TCIFLUSH);
     
