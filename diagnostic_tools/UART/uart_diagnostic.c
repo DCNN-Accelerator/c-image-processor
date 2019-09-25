@@ -7,7 +7,7 @@
 
 int main(int argc, char** argv){
     int fd = open(argv[1], O_RDWR | O_NOCTTY);
-    if(fd < 0) printf("\n ERROR in opening serial port");
+    if(fd < 0) printf("ERROR in opening serial port \n");
     
     struct termios SerialPortSettings;
     tcgetattr(fd, &SerialPortSettings);
@@ -29,9 +29,9 @@ int main(int argc, char** argv){
     
     tcflush(fd, TCIFLUSH);
     if((tcsetattr(fd,TCSANOW,&SerialPortSettings)) != 0)
-        printf("\n ERROR in Setting attributes");
+        printf("ERROR in Setting attributes \n");
     else
-        printf("\n Baud = %d StopBits = 1 Parity = none",BAUD);
+        printf("Baud = %d StopBits = 1 Parity = none \n",BAUD);
     
     tcflush(fd, TCIFLUSH);
     
@@ -64,9 +64,9 @@ int main(int argc, char** argv){
     }
     
     if(same)
-        printf("\n Success!");
+        printf("Success! \n");
     else
-        printf("\n Failure!");
+        printf("/.;'Failure! \n");
     
     return 0;
 }
