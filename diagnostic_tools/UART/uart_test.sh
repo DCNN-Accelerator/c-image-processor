@@ -4,7 +4,7 @@ echo "resetting permissions to USB port"
 sudo chmod o+rw /dev/ttyUSB1
 
 echo "setting speed and flow control"
-stty 9600 -crtscts -clocal -cread cs8 < /dev/ttyUSB1
+stty 9600 -cread cs8 < /dev/ttyUSB1
 
 echo "sending message to FPGA"
 echo "test" > /dev/ttyUSB1
