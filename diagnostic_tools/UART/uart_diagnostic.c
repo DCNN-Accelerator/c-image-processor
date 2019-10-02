@@ -18,9 +18,10 @@ int main(int argc, char** argv){
     SerialPortSettings.c_cflag &= ~PARENB;
     SerialPortSettings.c_cflag &= ~CSTOPB;
     SerialPortSettings.c_cflag &= ~CSIZE;
+    SerialPortSettings.c_cflag &= ~CLOCAL;
     SerialPortSettings.c_cflag |= CS8;
     SerialPortSettings.c_cflag |= CRTSCTS;
-    SerialPortSettings.c_cflag |= CREAD | CLOCAL;
+    SerialPortSettings.c_cflag |= CREAD;
     
     SerialPortSettings.c_iflag &= ~(IXON | IXOFF | IXANY);
     SerialPortSettings.c_iflag &= ~(ICANON | ECHO | ECHOE | ISIG);
