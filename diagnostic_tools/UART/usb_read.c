@@ -36,8 +36,9 @@ int main()
         printf("past memset\n");                        //DEBUG
         
         newtio.c_cflag = BAUDRATE | CRTSCTS | CS8 | CREAD & ~CLOCAL;
-        newtio.c_iflag = IGNPAR | ICRNL;          
+        newtio.c_iflag = IGNPAR | ICRNL & ~IXON & ~IXOFF;          
         newtio.c_oflag = 0;  
+        newtio.c_lflag = ECHO;
         
         printf("c_cflag: %04X\n", newtio.c_cflag);        //DEBUG
         
