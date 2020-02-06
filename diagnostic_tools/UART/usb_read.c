@@ -61,7 +61,7 @@ int main()
     if (portfd >= 0) 
     {
         printf("time to read\n");                       //DEBUG
-        ssize_t size = read(portfd, buf, 1);
+        ssize_t size = read(portfd, buf, 4);
         
         if (len == 0) len = strlen(s);
         printf("past len check\n");                     //DEBUG

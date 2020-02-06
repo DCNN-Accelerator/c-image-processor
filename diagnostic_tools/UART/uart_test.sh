@@ -7,7 +7,7 @@ echo "setting speed and flow control"
 stty 9600 -cread cs8 < /dev/ttyUSB1
 
 echo "sending message to FPGA"
-echo "test" > /dev/ttyUSB1
+echo "t" > /dev/ttyUSB1
 
 #sleep 1
 

@@ -6,7 +6,7 @@
 #define BAUD B9600
 
 int main(int argc, char** argv){
-    int fd = open(argv[1], O_RDWR | O_NOCTTY);
+    int fd = open("/dev/ttyUSB0", O_RDWR | O_NOCTTY);
     if(fd < 0) printf("ERROR in opening serial port \n");
     
     struct termios SerialPortSettings;
